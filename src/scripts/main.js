@@ -25,6 +25,10 @@ function start() {
     var somGameover = document.getElementById("somGameover");
     var somPerdido = document.getElementById("somPerdido");
     var somResgate = document.getElementById("somResgate");
+    var somAcabou = document.getElementById("somAcabou");
+    var somGenocida = document.getElementById("somGenocida");
+    var genocida = 0;
+    var acabou = 0;
     
     jogo.timer = setInterval(loop,30); // deixando o fundo do jogo em loop a cada 30ms
     jogo.pressionou = [];
@@ -336,15 +340,35 @@ function start() {
         } 
         else if(pontos > 2000 && pontos < 3000){
             $("#placar").html('<h2> PONTOS: <b class="nivel-medio">' + pontos + '</b> AMIGOS SALVOS: ' + salvos + ' AMIGOS PERDIDOS: ' + perdidos + '</h2>');
+            if(genocida == 0)
+            {
+                somGenocida.play();
+                genocida++;
+            }
         }
         else if(pontos > 3000 && pontos < 4000){
             $("#placar").html('<h2> PONTOS: <b class="nivel-alto">' + pontos + '</b> AMIGOS SALVOS: ' + salvos + ' AMIGOS PERDIDOS: ' + perdidos + '</h2>');
+            if(genocida == 1)
+            {
+                somGenocida.play();
+                genocida++;
+            }
         }
         else if(pontos > 4000 && pontos < 5000){
             $("#placar").html('<h2> PONTOS: <b class="nivel-muito-alto">' + pontos + '</b> AMIGOS SALVOS: ' + salvos + ' AMIGOS PERDIDOS: ' + perdidos + '</h2>');
+            if(genocida == 2)
+            {
+                somGenocida.play();
+                genocida++;
+            }
         }
         else if(pontos > 5000){
             $("#placar").html('<h2> PONTOS: <b class="nivel-insano">' + pontos + '</b> AMIGOS SALVOS: ' + salvos + ' AMIGOS PERDIDOS: ' + perdidos + '</h2>');
+            if(acabou == 0)
+            {
+                somAcabou.play();
+                acabou++;
+            }
         }
     }
 
