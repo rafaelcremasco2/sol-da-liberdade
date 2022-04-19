@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@font-face {
+	font-family: Titulo;
+	src: url(../assets/fontes/1up.ttf);
+}
+@font-face {
+	font-family: game_over;
+	src: url(../assets/fontes/game-over.otf);
+}
+@font-face {
+	font-family: placar;
+	src: url(../assets/fontes/VCR_OSD_MONO_1.001.ttf);
+}
+
+h1 {
+	font-family: Titulo;
+	font-size: 56px;
+	color: #333;
+	text-shadow: #CCC 1px 0 10px;
+	margin-top: 50px;
+}
+
+body {
+	background-image: url(../assets/images/fundo_game.png);
+}
+
+#fim h1 {
+	font-family: game_over !important;
+	margin-top: 10px;
+}
+#fim b {
+	font-family: placar !important;
+}
+
+#container{
+	width: 950px;
+	height: auto;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+#fundoGame {
+	width: 950px;
+	height: 630px;
+	background-image: url(../assets/images/fundo_game.png);
+	border-color: #FFF;
+	border-style: solid;
+}
+
+#jogador {
+	width: 160px;
+	height: 121px;
+	position: absolute;
+	left: 50px;
+	top: 179px;
+    background-image: url(../assets/images/hero.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#inimigo1 {
+	width: 160px;
+	height: 121px;
+	position: absolute;
+	left: 689px;
+	top: 253px;
+	background-image:url(../assets/images/monster-0.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	
+}
+
+#inimigo2 {
+	width: 160px;
+	height: 121px;
+	position: absolute;
+	left: 775px;
+	top: 420px;
+	background-image: url(../assets/images/monster-stf.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#amigo {
+	width: 90px;
+	height: 83px;
+	position: absolute;
+	left: 10px;
+	top: 464px;
+	background-image:url(../assets/images/amigo.png);
+	background-size: cover; 
+}
+
+#inicio {
+	width: 450px;
+	height: 450px;
+ 	margin-left: auto;
+    margin-right: auto;
+ 	margin-top: 10px;
+	text-align: center;
+	padding: 80px;
+	font-family: 'Roboto';
+	background-image: url(../assets/images/planeta.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#inicio p {
+	padding: 5px;
+	background-color: rgba(255, 255, 255, 0.705);
+}
+
+.anima1 {
+	background-image: url(../assets/images/hero.png);
+	animation: rotation .400s infinite;
+
+    -webkit-animation: rotation .400s infinite;
+    -moz-animation: rotation .400s infinite;
+    -ms-animation: rotation .400s infinite;
+    -o-animation: rotation .400s infinite;
+}
+
+.anima2 {
+	background-image: url(../assets/images/inimigo-0.png);
+	animation: rotation .400s infinite;
+
+    -webkit-animation: rotation .400s infinite;
+    -moz-animation: rotation .400s infinite;
+    -ms-animation: rotation .400s infinite;
+    -o-animation: rotation .400s infinite;
+}
+
+@keyframes rotation {
+	from { transform: rotate(0deg);	}
+	to { transform: rotate(2deg) }
+}
+
+@-webkit-keyframes rotation {
+	from { transform: rotate(0deg);	}
+	to { transform: rotate(2deg) }
+}
+
+@-moz-keyframes rotation {
+	from { transform: rotate(0deg);	}
+	to { transform: rotate(2deg) }
+}
+
+@-ms-keyframes rotation {
+	from { transform: rotate(0deg);	}
+	to { transform: rotate(2deg) }
+}
+
+@-o-keyframes rotation {
+	from { transform: rotate(0deg);	}
+	to { transform: rotate(2deg) }
+}
+
+.anima3 {
+	background-image: url(../assets/images/amigo.png);
+    animation: rotation .600s infinite;
+
+    -webkit-animation: rotation .600s infinite;
+    -moz-animation: rotation .600s infinite;
+    -ms-animation: rotation .600s infinite;
+    -o-animation: rotation .600s infinite;
+}
+
+@keyframes play2 {
+	from {background-position: 0px;}
+	to {background-position: -680px;}
+}
+
+@-webkit-keyframes play2 {
+   from { background-position: 0px; }
+   to { background-position: -680px; }
+}
+
+@-moz-keyframes play2 {
+   from { background-position: 0px; }
+   to { background-position: -680px; }
+}
+
+@-ms-keyframes play2 {
+   from { background-position: 0px; }
+   to { background-position: -680px; }
+}
+
+@-o-keyframes play2 {
+   from { background-position: 0px; }
+   to { background-position: -680px; }
+}
+
+#disparo {
+	width: 113px;
+	height: 54px;
+	position: absolute;
+	background-image: url(../assets/images/disparo.png);
+}
+
+#explosao1 {
+	width: 15px;
+	height: 87px;
+	position: absolute;
+}
+
+#explosao2 {
+	width: 15px;
+	height: 87px;
+	position: absolute;	
+}
+
+#explosao3 {
+	width: 180px;
+	height: 135;
+	position: absolute;
+}
+
+.anima4 {
+	width: 180px;
+	height: 135px;
+	background-image: url(../assets/images/amigo_morte.png);
+	background-size: cover;
+	animation: fadeinout 1s linear forwards;
+    opacity: 0;
+
+	-webkit-animation: fadeinout 1s linear forwards;
+    -moz-animation: fadeinout 1s linear forwards;
+    -ms-animation: fadeinout 1s linear forwards;
+    -o-animation: fadeinout 1s linear forwards;
+}
+
+@keyframes fadeinout  {
+	50% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeinout  {
+	50% { opacity: 1; }
+}
+
+@-moz-keyframes fadeinout  {
+	50% { opacity: 1; }
+}
+
+@-ms-keyframes fadeinout  {
+	50% { opacity: 1; }
+}
+
+@-o-keyframes fadeinout  {
+	50% { opacity: 1; }
+}
+
+#placar {
+	width: 600px;
+	height: 50px;
+	position: absolute;
+	left: 30px;
+	top: 580px;
+}
+#placar h2 {
+	font-family: placar !important;
+}
+#placar .nivel-medio {
+	color: #cee938;
+}
+#placar .nivel-alto {
+	color: #e9e338;
+}
+#placar .nivel-muito-alto {
+	color: #e9ab38;
+}
+#placar .nivel-insano {
+	color: #e95838;
+}
+
+h2 {
+	font-family: Titulo;
+	font-size: 20px;
+	color: #FFF;
+}
+
+#energia {
+	width: 140px;
+	height: 38px;
+	position: absolute;
+	left: 750px;
+	top: 7px;	
+}
+
+h3 {
+	font-family: Titulo;
+	font-size: 20px;
+	color: #217a21;
+}
+
+#fim {
+	width: 350px;
+	height: 200px;
+	background-color: #FFF;
+ 	margin-left: auto;
+    margin-right: auto;
+ 	margin-top: 110px;
+	text-align: center;
+	padding: 20px;
+	font-family: 'Roboto';
+}
+
+footer {
+	background-color: #030018;
+	text-align: center;
+	margin-top: 100px;
+	border-color: #010009;
+	border-style: solid;
+	color: #999;
+	width: 950px;
+	height: 140px;
+ 	margin-left: auto;
+	margin-right: auto;
+	font-family: 'Roboto';
+}
+footer a {
+	color: rgb(236, 232, 232);
+}
+
+#reinicia {
+	cursor: pointer;
+}
