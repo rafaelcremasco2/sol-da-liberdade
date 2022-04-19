@@ -42,4 +42,4 @@ Uma das dificuldades dos desenvolvedores de jogos é encontrar uma plataforma de
 - Este projeto está sob a licença [MIT](./LICENSE).
 
 <!--Bottom session-->
-<!-- <br><h4 align=center>Made with by <a target="_blank" href="#" >Rafael Cremasco Lacerda</a></h4> -->
+<br><h4 align=center>Made with by <a target="_blank" href="https://sol-da-liberdade.vercel.app/" >Rafael Cremasco Lacerda</a></h4>
