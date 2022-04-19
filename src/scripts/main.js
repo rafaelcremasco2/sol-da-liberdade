@@ -54,10 +54,10 @@ function start() {
 
     // define imagem do inimigo
     function defineUrlImagemInimigo(){
-        let aparencia = parseInt(Math.random() * 2);
+        let aparencia = parseInt(Math.random() * 6);
         
         while(aparencia == aparenciaInimigo1){
-            aparencia = parseInt(Math.random() * 2);
+            aparencia = parseInt(Math.random() * 6);
         }
         // define nova aparencia na variável global
         aparenciaInimigo1 = aparencia;
