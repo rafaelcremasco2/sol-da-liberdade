@@ -16,7 +16,7 @@ function start() {
     var ALTURA_CONTANIER = $('#container').css('height');
     const ALTURA_MAXIMA_JOGADOR = 60;
     var ALTURA_MINIMA_JOGADOR = parseInt(parseInt(ALTURA_CONTANIER) * 0.65);
-    var ALTURA_MINIMA_INIMIGO_1 = ALTURA_MINIMA_JOGADOR + 160;
+    var ALTURA_MINIMA_INIMIGO_1 = ALTURA_MINIMA_JOGADOR - 160;
     var jogo = {}
     var TECLA = { W: 38, S: 40, D: 68, ESPACO: 32 }
     var velocidade = 5;
@@ -44,6 +44,7 @@ function start() {
         LARGURA_CONTANIER = $('#container').width();
         ALTURA_CONTANIER = $('#container').height();
         ALTURA_MINIMA_JOGADOR = parseInt(parseInt(ALTURA_CONTANIER) * 0.65);
+        ALTURA_MINIMA_INIMIGO_1 = ALTURA_MINIMA_JOGADOR - 160;
     }
 
     // Controlando mudanças na orientação da tela
