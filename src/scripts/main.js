@@ -7,13 +7,17 @@ function start() {
     $("#fundoGame").append("<div id='amigo' class='anima3'></div>");
     $("#fundoGame").append("<div id='placar'></div>");
     $("#fundoGame").append("<div id='energia'></div>");
+    $("#fundoGame").append("<div id='botao-atirar'></div>");
+    $("#fundoGame").append("<div id='botao-subir'></div>");
+    $("#fundoGame").append("<div id='botao-descer'></div>");
     
+    // Variáveis globais
+    var LARGURA_CONTANIER = $('#container').css('width');
+    var ALTURA_CONTANIER = $('#container').css('height');
+    const ALTURA_MAXIMA_JOGADOR = 60;
+    var ALTURA_MINIMA_JOGADOR = parseInt(parseInt(ALTURA_CONTANIER) * 0.65);
+    var ALTURA_MINIMA_INIMIGO_1 = ALTURA_MINIMA_JOGADOR - 160;
     var jogo = {}
-    const LARGURA_CONTANIER = $('#container').css('width');
-    const ALTURA_CONTANIER = $('#container').css('height');
-    const ALTURA_MAXIMA_JOGADOR = 40;
-    const ALTURA_MINIMA_JOGADOR = parseInt(parseInt(ALTURA_CONTANIER) * 0.65);
-    const ALTURA_MINIMA_INIMIGO_1 = ALTURA_MINIMA_JOGADOR - 150;
     var TECLA = { W: 38, S: 40, D: 68, ESPACO: 32 }
     var velocidade = 5;
     var posicaoY = parseInt(Math.random() * 334);
@@ -34,8 +38,30 @@ function start() {
     var somGenocida = document.getElementById("somGenocida");
     var genocida = 0;
     var acabou = 0;
+
+    // Função que atualiza as váriáveis de posicionamento e tamanho do jogo
+    function atualizaVariaveisDeControle(){
+        LARGURA_CONTANIER = $('#container').width();
+        ALTURA_CONTANIER = $('#container').height();
+        ALTURA_MINIMA_JOGADOR = parseInt(parseInt(ALTURA_CONTANIER) * 0.65);
+        //ALTURA_MINIMA_INIMIGO_1 = ALTURA_MINIMA_JOGADOR - 160;  
+    }
+
+    // Controlando mudanças na orientação da tela
+    window.addEventListener("resize", function() {
+        atualizaVariaveisDeControle();   
+    }, false);
+
+    // Empedir de arrastar a tela
+    document.body.addEventListener('touchmove', function(event) {
+        event.preventDefault();
+    }, false);
     
-    
+    // Bloqueia acesso ao meno de contexto
+    $(this).bind("contextmenu", function(e) {
+        e.preventDefault();
+    });
+
     jogo.timer = setInterval(loop,30); // deixando o fundo do jogo em loop a cada 30ms
     jogo.pressionou = [];
     musica.addEventListener("ended", function(){ musica.currentTime = 0; musica.play(); }, false);
@@ -50,6 +76,36 @@ function start() {
     $(document).keyup(function(e){
         e.preventDefault();
         jogo.pressionou[e.which] = false;
+    });
+
+    // Função que controla os movimentos dos jogador
+    function realizaAcaoAoPressionarControles(id, acao, intervalo) {
+        var timeout;
+        // Listen para o MouseDown event.
+        document.getElementById(id).addEventListener('mousedown', function(ev) { 
+            acao(); 
+            timeout = setInterval(acao, intervalo); 
+            return false; }, 
+            false);
+        document.getElementById(id).addEventListener('touchstart', function(ev) { 
+            acao(); 
+            timeout = setInterval(acao, intervalo); 
+            return false; }, 
+            false);
+        // Listen para o mouse up events.
+        document.getElementById(id).addEventListener('mouseup', function(ev) { clearInterval(timeout); return false; }, false);
+        // Listen para saida de touch e events.
+        document.getElementById(id).addEventListener('touchend', function(ev) { clearInterval(timeout); return false; }, false);
+    }
+    
+    //Controla movimentos ao clicar nos botões direcionais na tela
+    realizaAcaoAoPressionarControles('botao-subir', moveJogadorParaCima, 30);
+    realizaAcaoAoPressionarControles('botao-descer', moveJogadorParaBaixo, 30);
+
+    // Atirar ao clicar no botão Atirar
+    $("#botao-atirar").click(function () {
+        disparo();
+        return false;
     });
 
     // função de looping
@@ -82,27 +138,38 @@ function start() {
         esquerda = parseInt($("#fundoGame").css("background-position"));
         $("#fundoGame").css("background-position",esquerda-1);
     }
+    
+    // Função que move jogador para cima
+    function moveJogadorParaCima(){
+        var topo = parseInt($("#jogador").css("top"));
+        $("#jogador").css("top", topo - 10);
+
+        // limitando o nave no topo da página
+        if (topo <= ALTURA_MAXIMA_JOGADOR) {
+            $("#jogador").css("top",topo + 10);
+        }
+    }
+
+
+    // Função que move jogador para baixo
+    function moveJogadorParaBaixo(){
+        var topo = parseInt($("#jogador").css("top"));
+        $("#jogador").css("top", topo + 10);
+
+        // limitando o nave no final da página
+        if (topo >= ALTURA_MINIMA_JOGADOR) {	
+            $("#jogador").css("top",topo - 10);		
+        }
+    }
 
     // função para mover o nave cinza
     function moveJogador() {
         if (jogo.pressionou[TECLA.W]) {
-            var topo = parseInt($("#jogador").css("top"));
-            $("#jogador").css("top",topo - 10);
-
-            // limitando o nave no topo da página
-            if (topo <= ALTURA_MAXIMA_JOGADOR) {
-                $("#jogador").css("top",topo + 10);
-            }
+            moveJogadorParaCima();
         }
 
         if (jogo.pressionou[TECLA.S]) {
-            var topo = parseInt($("#jogador").css("top"));
-            $("#jogador").css("top",topo + 10);
-
-            // limitando o nave no final da página
-            if (topo >= ALTURA_MINIMA_JOGADOR) {	
-                $("#jogador").css("top",topo - 10);		
-            }
+            moveJogadorParaBaixo();
         }
         
         if (jogo.pressionou[TECLA.D] || jogo.pressionou[TECLA.ESPACO]) {
@@ -141,18 +208,24 @@ function start() {
         }
     }
 
-    // função que realiza o disparo da arma do nave cinza
+    // função que realiza o disparo da arma da nave
     function disparo() {
         if (podeAtirar == true) {
             somDisparo.play();
             podeAtirar = false;
             topo = parseInt($("#jogador").css("top"))
             posicaoX = parseInt($("#jogador").css("left"))
-            tiroX = posicaoX + 140;
-            topoTiro = topo + 45;
+            if(parseInt(LARGURA_CONTANIER) < 660 || parseInt(ALTURA_CONTANIER) < 660){
+                tiroX = posicaoX + 70;
+                topoTiro = topo + 22;
+            } else {
+                tiroX = posicaoX + 140;
+                topoTiro = topo + 45;
+            }
+            
             $("#fundoGame").append("<div id='disparo'></div");
-            $("#disparo").css("top",topoTiro);
-            $("#disparo").css("left",tiroX);
+            $("#disparo").css("top", topoTiro);
+            $("#disparo").css("left", tiroX);
 
             var tempoDisparo = window.setInterval(executaDisparo, 15);
         }
@@ -410,11 +483,14 @@ function start() {
         $("#inimigo1").remove();
         $("#inimigo2").remove();
         $("#amigo").remove();
+        $("#botao-subir").remove();
+        $("#botao-descer").remove();
+        $("#botao-atirar").remove();
         $("#fundoGame").append("<div id='fim'></div>");
         $("#fim").html("<h1 classe='gameover'>GAME OVER</h1><p>Sua pontuação foi: <b>"
              + pontos + "</b><br>Amigos Resgatados: <b>"+ salvos + "</b></p>" 
              + "<div id='reinicia' onClick=reiniciaJogo()><h3>Jogar Novamente</h3>"
-             +"<br><small>Desenvolvido por Rafael Cremasco Lacerda</small></div>");
+             + "<br><small>Desenvolvido por Rafael Cremasco Lacerda e caricaturas Amarildo</small></div>");
     }
 
 }

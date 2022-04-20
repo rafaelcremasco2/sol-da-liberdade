@@ -46,7 +46,6 @@ body {
 	overflow: hidden;
 }
 
-
 #fundoGame {
 	width: 100vw;
 	height: 100vh;
@@ -95,6 +94,54 @@ body {
 	top: 65vh;
 	background-image:url(../assets/images/amigo.png);
 	background-size: cover; 
+}
+
+#botao-subir {
+	width: 90px;
+	height: 90px;
+	background-color: rgba(255, 255, 255, 0.097);
+	background-image: url(../assets/images/botao-subir.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 100%;
+	cursor: pointer;
+	position: absolute;
+	left: 10vw;
+	top: 70vh;
+}
+
+#botao-descer {
+	width: 90px;
+	height: 90px;
+	background-color: rgba(255, 255, 255, 0.097);
+	background-image: url(../assets/images/botao-descer.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 100%;
+	cursor: pointer;
+	position: absolute;
+	left: 10vw;
+	top: 85vh;
+}
+#botao-subir:active:hover, #botao-descer:active:hover {
+	background-color: #a1d70160 !important;
+}
+
+#botao-atirar {
+	width: 120px;
+	height: 120px;
+	background-color: rgba(255, 255, 255, 0.097);
+	background-image: url(../assets/images/mira.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 100%;
+	cursor: pointer;
+	position: absolute;
+	left: calc(100vw - 20%);
+	top: 80vh;
+}
+#botao-atirar:active:hover {
+	background-color: #ff040460 !important;
 }
 
 #inicio {
@@ -171,31 +218,6 @@ body {
     -o-animation: rotation .600s infinite;
 }
 
-@keyframes play2 {
-	from {background-position: 0px;}
-	to {background-position: -680px;}
-}
-
-@-webkit-keyframes play2 {
-   from { background-position: 0px; }
-   to { background-position: -680px; }
-}
-
-@-moz-keyframes play2 {
-   from { background-position: 0px; }
-   to { background-position: -680px; }
-}
-
-@-ms-keyframes play2 {
-   from { background-position: 0px; }
-   to { background-position: -680px; }
-}
-
-@-o-keyframes play2 {
-   from { background-position: 0px; }
-   to { background-position: -680px; }
-}
-
 #disparo {
 	width: 113px;
 	height: 54px;
@@ -217,7 +239,7 @@ body {
 
 #explosao3 {
 	width: 180px;
-	height: 135;
+	height: 135px;
 	position: absolute;
 }
 
@@ -259,8 +281,8 @@ body {
 	width: 600px;
 	height: 50px;
 	position: absolute;
-	left: 30px;
-	top: 85vh;
+	left: 120px;
+	top: 7px;
 }
 #placar h2 {
 	font-family: placar !important;
@@ -300,7 +322,7 @@ h3 {
 
 #fim {
 	width: 350px;
-	height: 250px;
+	height: 270px;
 	background-color: #FFF;
  	margin-left: auto;
     margin-right: auto;
@@ -330,4 +352,186 @@ footer a {
 
 #reinicia {
 	cursor: pointer;
+}
+
+
+@media (max-width: 660px)
+{
+	#botao-atirar {
+		width: 60px;
+		height: 60px;
+		position: absolute;
+		left: 75vw;
+		top: 85vh;
+	}
+
+	#botao-subir, #botao-descer {
+		width: 45px;
+		height: 45px;
+	}
+
+	#botao-subir {
+		position: absolute;
+		left: 10vw;
+		top: 80vh;
+	}
+
+	#botao-descer {
+		position: absolute;
+		left: 10vw;
+		top: 90vh;
+	}
+
+	#placar {
+		width: 250px;
+		height: 100px;
+		position: absolute;
+		left: 10px;
+		top: 7px;
+	}
+
+	#placar h2 {
+		font-family: placar !important;
+		font-size: 0.9em;
+	}
+
+	#energia {
+		width: 140px;
+		height: 38px;
+		position: absolute;
+		left: 65vw;
+		top: 7px;	
+	}
+
+	#jogador, #inimigo1, #inimigo2 {
+		width: 80px;
+		height: 60px;
+	}
+	
+	#amigo {
+		width: 45px;
+		height: 42px;
+	}
+	
+	#explosao3 {
+		width: 150px;
+		height: 113px;
+	}
+	#inicio {
+		width: 400px;
+		height: 400px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 40%;
+		text-align: center;
+		padding: 0;
+	}
+	
+	#inicio p {
+		padding: 5px;
+		background-color: rgba(255, 255, 255, 0.705);
+	}
+	h1 {
+		padding-top: 2em;
+		color: rgb(0, 10, 15);
+		text-shadow: rgb(255, 253, 253) 2px 0 10px;
+		position: relative;
+		font-size: 45px;
+	}
+}
+@media (max-height: 660px) and (max-width: 914px)
+{
+	#botao-atirar {
+		width: 60px;
+		height: 60px;
+		position: absolute;
+		left: 85vw;
+		top: 80vh;
+	}
+
+	#botao-subir, #botao-descer {
+		width: 45px;
+		height: 45px;
+	}
+
+	#botao-subir {
+		position: absolute;
+		left: 10vw;
+		top: 85vh;
+	}
+
+	#botao-descer {
+		position: absolute;
+		left: calc(10vw + 90px);
+		top: 85vh;
+	}
+
+	#placar {
+		width: 500px;
+		height: 100px;
+		position: absolute;
+		left: 50px;
+		top: 7px;
+	}
+
+	#placar h2 {
+		font-family: placar !important;
+		font-size: 0.9em;
+	}
+
+	#energia {
+		width: 140px;
+		height: 38px;
+		position: absolute;
+		left: 80vw;
+		top: 7px;	
+	}
+
+	#jogador, #inimigo1, #inimigo2 {
+		width: 80px;
+		height: 60px;
+	}
+	
+	#amigo {
+		width: 45px;
+		height: 42px;
+	}
+	
+	#explosao3 {
+		width: 150px;
+		height: 113px;
+	}
+	#inicio {
+		width: 400px;
+		height: 400px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: -40px;
+		text-align: center;
+		padding: 0;
+	}
+	
+	#inicio p {
+		padding: 5px;
+		background-color: rgba(255, 255, 255, 0.705);
+	}
+	h1 {
+		padding-top: 2em;
+		color: rgb(0, 10, 15);
+		text-shadow: rgb(255, 253, 253) 2px 0 10px;
+		position: relative;
+		font-size: 45px;
+	}
+	/* @media screen and (min-width: 320px) and (max-width: 914px) and (orientation: portrait) {
+		html {
+		  transform: rotate(-90deg);
+		  transform-origin: left top;
+		  width: 100vh;
+		  height: 100vw;
+		  overflow-x: hidden;
+		  position: absolute;
+		  top: 100%;
+		  left: 0;
+		}
+	} */
 }
