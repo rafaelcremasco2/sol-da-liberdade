@@ -23,6 +23,10 @@ h1 {
 
 body {
 	background-image: url(../assets/images/fundo_game.png);
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding:0; 
 }
 
 #fim h1 {
@@ -33,29 +37,28 @@ body {
 	font-family: placar !important;
 }
 
-#container{
-	width: 950px;
-	height: auto;
-	position: relative;
-	margin-left: auto;
-	margin-right: auto;
+#container {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
 }
 
 
 #fundoGame {
-	width: 950px;
-	height: 630px;
+	width: 100vw;
+	height: 100vh;
 	background-image: url(../assets/images/fundo_game.png);
-	border-color: #FFF;
-	border-style: solid;
 }
 
 #jogador {
 	width: 160px;
 	height: 121px;
 	position: absolute;
-	left: 50px;
-	top: 179px;
+	left: 5vw;
+	top: 30vh;
     background-image: url(../assets/images/hero.png);
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -65,8 +68,8 @@ body {
 	width: 160px;
 	height: 121px;
 	position: absolute;
-	left: 689px;
-	top: 253px;
+	left: calc(100vw - 165px);
+	top: 60vh;
 	background-image:url(../assets/images/monster-0.png);
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -77,8 +80,8 @@ body {
 	width: 160px;
 	height: 121px;
 	position: absolute;
-	left: 775px;
-	top: 420px;
+	left: 81vw;
+	top: 65vh;
 	background-image: url(../assets/images/monster-stf.png);
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -88,8 +91,8 @@ body {
 	width: 90px;
 	height: 83px;
 	position: absolute;
-	left: 10px;
-	top: 464px;
+	left: -90px;
+	top: 65vh;
 	background-image:url(../assets/images/amigo.png);
 	background-size: cover; 
 }
@@ -257,7 +260,7 @@ body {
 	height: 50px;
 	position: absolute;
 	left: 30px;
-	top: 580px;
+	top: 85vh;
 }
 #placar h2 {
 	font-family: placar !important;
@@ -285,7 +288,7 @@ h2 {
 	width: 140px;
 	height: 38px;
 	position: absolute;
-	left: 750px;
+	left: 79vw;
 	top: 7px;	
 }
 
@@ -297,11 +300,12 @@ h3 {
 
 #fim {
 	width: 350px;
-	height: 200px;
+	height: 250px;
 	background-color: #FFF;
  	margin-left: auto;
     margin-right: auto;
- 	margin-top: 110px;
+ 	margin-top: 18vh;
+	margin-bottom: 0;
 	text-align: center;
 	padding: 20px;
 	font-family: 'Roboto';

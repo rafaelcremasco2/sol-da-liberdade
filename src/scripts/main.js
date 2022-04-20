@@ -9,6 +9,11 @@ function start() {
     $("#fundoGame").append("<div id='energia'></div>");
     
     var jogo = {}
+    const LARGURA_CONTANIER = $('#container').css('width');
+    const ALTURA_CONTANIER = $('#container').css('height');
+    const ALTURA_MAXIMA_JOGADOR = 40;
+    const ALTURA_MINIMA_JOGADOR = parseInt(parseInt(ALTURA_CONTANIER) * 0.65);
+    const ALTURA_MINIMA_INIMIGO_1 = ALTURA_MINIMA_JOGADOR - 150;
     var TECLA = { W: 38, S: 40, D: 68, ESPACO: 32 }
     var velocidade = 5;
     var posicaoY = parseInt(Math.random() * 334);
@@ -30,6 +35,7 @@ function start() {
     var genocida = 0;
     var acabou = 0;
     
+    
     jogo.timer = setInterval(loop,30); // deixando o fundo do jogo em loop a cada 30ms
     jogo.pressionou = [];
     musica.addEventListener("ended", function(){ musica.currentTime = 0; musica.play(); }, false);
@@ -37,13 +43,15 @@ function start() {
 
     //Verifica se o usuário pressionou alguma tecla
     $(document).keydown(function(e){
+        e.preventDefault();
         jogo.pressionou[e.which] = true;
     });
         
     $(document).keyup(function(e){
+        e.preventDefault();
         jogo.pressionou[e.which] = false;
     });
-    
+
     // função de looping
     function loop() {
         moveFundo();
@@ -58,10 +66,10 @@ function start() {
 
     // define imagem do inimigo
     function defineUrlImagemInimigo(){
-        let aparencia = parseInt(Math.random() * 6);
+        let aparencia = parseInt(Math.random() * 9);
         
         while(aparencia == aparenciaInimigo1){
-            aparencia = parseInt(Math.random() * 6);
+            aparencia = parseInt(Math.random() * 9);
         }
         // define nova aparencia na variável global
         aparenciaInimigo1 = aparencia;
@@ -82,7 +90,7 @@ function start() {
             $("#jogador").css("top",topo - 10);
 
             // limitando o nave no topo da página
-            if (topo<=0) {
+            if (topo <= ALTURA_MAXIMA_JOGADOR) {
                 $("#jogador").css("top",topo + 10);
             }
         }
@@ -92,7 +100,7 @@ function start() {
             $("#jogador").css("top",topo + 10);
 
             // limitando o nave no final da página
-            if (topo>=434) {	
+            if (topo >= ALTURA_MINIMA_JOGADOR) {	
                 $("#jogador").css("top",topo - 10);		
             }
         }
@@ -105,33 +113,31 @@ function start() {
     // função para mover o inimigo 1, nave amarelo
     function moveInimigo1() {
         posicaoX = parseInt($("#inimigo1").css("left"));
-        $("#inimigo1").css("left",posicaoX - velocidade);
-        $("#inimigo1").css("top",posicaoY);
-            
-        if (posicaoX<=0) {
-            posicaoY = parseInt(Math.random() * 334);
-            $("#inimigo1").css("left",694);
-            $("#inimigo1").css("top",posicaoY);           
+        $("#inimigo1").css("left", posicaoX - velocidade);
+        $("#inimigo1").css("top", posicaoY);
+        
+        if (posicaoX <= 0) {
+            novoInimigo1();        
         }
     }
 
     // função para mover o inimigo 2
     function moveInimigo2() {
         posicaoX = parseInt($("#inimigo2").css("left"));
-	    $("#inimigo2").css("left",posicaoX - 3);
+	    $("#inimigo2").css("left", posicaoX - 3);
 				
-		if (posicaoX<=0) {
-            $("#inimigo2").css("left",775);		
+		if (posicaoX <= 0) {
+            $("#inimigo2").css("left", LARGURA_CONTANIER);		
 		}
     }
 
     // função para mover o amigo, o que vai ser resgatado
     function moveAmigo() {
         posicaoX = parseInt($("#amigo").css("left"));
-        $("#amigo").css("left",posicaoX + 1);
+        $("#amigo").css("left", posicaoX + 1);
 
-        if (posicaoX > 906) {
-            $("#amigo").css("left",0);
+        if (posicaoX > LARGURA_CONTANIER) {
+            $("#amigo").css("left", -30);
         }
     }
 
@@ -154,7 +160,7 @@ function start() {
         // função que realiza o disparo da arma
         function executaDisparo() {
             posicaoX = parseInt($("#disparo").css("left"));
-            $("#disparo").css("left",posicaoX + 15);
+            $("#disparo").css("left", posicaoX + 15);
             
             if (posicaoX > 900) {
                 window.clearInterval(tempoDisparo);
@@ -179,7 +185,7 @@ function start() {
             energiaAtual--;
             inimigo1X = parseInt($("#inimigo1").css("left"));
             inimigo1Y = parseInt($("#inimigo1").css("top"));
-            explosao1(inimigo1X,inimigo1Y);
+            explosao1(inimigo1X, inimigo1Y);
 
             // Gera novo inimigo 1
             novoInimigo1();
@@ -190,7 +196,7 @@ function start() {
             energiaAtual--;
             inimigo2X = parseInt($("#inimigo2").css("left"));
             inimigo2Y = parseInt($("#inimigo2").css("top"));
-            explosao2(inimigo2X,inimigo2Y);
+            explosao2(inimigo2X, inimigo2Y);
 
             $("#inimigo2").remove();
             reposicionaInimigo2();
@@ -204,7 +210,7 @@ function start() {
 	        inimigo1Y = parseInt($("#inimigo1").css("top"));		
             explosao1(inimigo1X,inimigo1Y);
         
-	        $("#disparo").css("left",950);
+	        $("#disparo").css("left", 950);
 	                  
             // Gera novo inimigo 1
             novoInimigo1();
@@ -217,8 +223,8 @@ function start() {
             inimigo2Y = parseInt($("#inimigo2").css("top"));
             $("#inimigo2").remove();
 
-            explosao2(inimigo2X,inimigo2Y);
-            $("#disparo").css("left",950);
+            explosao2(inimigo2X, inimigo2Y);
+            $("#disparo").css("left", 950);
             reposicionaInimigo2();
         }
 
@@ -235,7 +241,7 @@ function start() {
             perdidos++;
             amigoX = parseInt($("#amigo").css("left")) + 30;
             amigoY = parseInt($("#amigo").css("top")) - 70;
-            explosao3(amigoX,amigoY);
+            explosao3(amigoX, amigoY);
             $("#amigo").remove();
             reposicionaAmigo();
         }
@@ -243,9 +249,9 @@ function start() {
 
     // Gera novo inimigo 1
     function novoInimigo1() {
-        posicaoY = parseInt(Math.random() * 334);
-        $("#inimigo1").css("left",694);
-        $("#inimigo1").css("top",posicaoY);
+        posicaoY = parseInt(Math.random() * ALTURA_MINIMA_INIMIGO_1) + ALTURA_MAXIMA_JOGADOR;
+        $("#inimigo1").css("left", LARGURA_CONTANIER);
+        $("#inimigo1").css("top", posicaoY);
         $("#inimigo1").css("background-image",'url(' + defineUrlImagemInimigo() + ')');
     }
 
@@ -284,7 +290,7 @@ function start() {
     }
 
     // função da explosão, colisão com o inimigo 2
-	function explosao2(inimigo2X,inimigo2Y) {
+	function explosao2(inimigo2X, inimigo2Y) {
         somExplosao.play();
         $("#fundoGame").append("<div id='explosao2'></div");
         $("#explosao2").css("background-image", "url(./src/assets/images/explosao.png)");
@@ -318,11 +324,11 @@ function start() {
     }
 
     // função da explosão, colisão do amigo com inimigo 2
-    function explosao3(amigoX,amigoY) {
+    function explosao3(amigoX, amigoY) {
         somPerdido.play();
         $("#fundoGame").append("<div id='explosao3' class='anima4'></div");
-        $("#explosao3").css("top",amigoY);
-        $("#explosao3").css("left",amigoX);
+        $("#explosao3").css("top", amigoY);
+        $("#explosao3").css("left", amigoX);
 
         var tempoExplosao3 = window.setInterval(resetaExplosao3, 1000);
 
@@ -405,7 +411,10 @@ function start() {
         $("#inimigo2").remove();
         $("#amigo").remove();
         $("#fundoGame").append("<div id='fim'></div>");
-        $("#fim").html("<h1 classe='gameover'>GAME OVER</h1><p>Sua pontuação foi: <b>" + pontos + "</b><br>Amigos Resgatados: <b>"+ salvos + "</b></p>" + "<div id='reinicia' onClick=reiniciaJogo()><h3>Jogar Novamente</h3></div>");
+        $("#fim").html("<h1 classe='gameover'>GAME OVER</h1><p>Sua pontuação foi: <b>"
+             + pontos + "</b><br>Amigos Resgatados: <b>"+ salvos + "</b></p>" 
+             + "<div id='reinicia' onClick=reiniciaJogo()><h3>Jogar Novamente</h3>"
+             +"<br><small>Desenvolvido por Rafael Cremasco Lacerda</small></div>");
     }
 
 }
