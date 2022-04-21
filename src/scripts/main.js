@@ -2,7 +2,7 @@
 function start() {
     // deixa o jogo em tela cheia
     document.documentElement.requestFullscreen();
-    
+
     $("#inicio").hide();
 	$("#fundoGame").append("<div id='jogador' class='anima1'></div>");
 	$("#fundoGame").append("<div id='inimigo1' class='anima2'></div>");
@@ -22,7 +22,7 @@ function start() {
     var ALTURA_MINIMA_INIMIGO_1 = ALTURA_MINIMA_JOGADOR - 160;
     var jogo = {}
     var TECLA = { W: 38, S: 40, D: 68, ESPACO: 32 }
-    var velocidade = $('#container').css('width') > 768 ? 5 : 1;
+    var velocidade = parseInt($('#container').width()) > 768 ? 5 : 1;
     var posicaoY = parseInt(Math.random() * 334);
     var podeAtirar = true;
     var fimdejogo = false;
@@ -194,7 +194,7 @@ function start() {
     // função para mover o inimigo 2
     function moveInimigo2() {
         posicaoX = parseInt($("#inimigo2").css("left"));
-        let velocidade = $('#container').css('width') > 768 ? 3 : 1;
+        let velocidade = parseInt($('#container').width()) > 768 ? 3 : 1;
 	    $("#inimigo2").css("left", posicaoX - velocidade);
 				
 		if (posicaoX <= 0) {
