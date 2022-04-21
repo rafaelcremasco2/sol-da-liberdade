@@ -14,13 +14,46 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./src/assets/images/icon_180x180.png">
     <link rel="mask-icon" href="./src/assets/images/icon.png" color="#ffffff">
     <link rel="shortcut icon" href="./src/assets/images/icon_512x512.png">
-    <link href="./src/styles/main.css" rel="stylesheet" type="text/css">
     <link rel="manifest" href="manifest.json">
+
+    <link href="./src/styles/preloader-styles.css" rel="stylesheet" type="text/css">
+    <link href="./src/styles/main.css" rel="stylesheet" type="text/css">
+    
     <title>Sol da Liberdade</title>
 </head>
 <body>
     <div id="container">
         <div id="fundoGame">
+            <!-- preeloader -->
+            <div class="loadingContent loadingCentre">
+                <img alt="carregando..." src="./src/assets/images/loading.gif">
+                <div id="loadingBar"></div>
+                <div id="loadingText">Carregando arquivos do jogo...</div>
+            </div>
+            <img src="./src/assets/images/amigo.png" class="toLoad loadedContent"> 
+            <img src="./src/assets/images/amigo_morte.png" class="toLoad loadedContent"> 
+            <img src="./src/assets/images/botao-descer.png" class="toLoad loadedContent"> 
+            <img src="./src/assets/images/botao-subir.png" class="toLoad loadedContent"> 
+            <img src="./src/assets/images/mira.png" class="toLoad loadedContent"> 
+            <img src="./src/assets/images/disparo.png" class="toLoad loadedContent"> 
+            <img src="./src/assets/images/fundo_game.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/energia0.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/energia1.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/energia2.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/energia3.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/explosao.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/planeta.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/monster-0.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/monster-1.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/monster-2.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/monster-3.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/monster-4.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/monster-5.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/monster-6.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/monster-7.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/monster-8.png" class="toLoad loadedContent">
+            <img src="./src/assets/images/monster-stf.png" class="toLoad loadedContent">
+            <!-- inicio -->
             <div id="inicio" onclick="start()">
                 <h1> Sol da Liberdade </h1>
                 <p>
@@ -43,8 +76,11 @@
     <audio src="./src/assets/audios/acabou.mp3" preload="auto" id="somAcabou"></audio>
     <audio src="./src/assets/audios/genociii.mp3" preload="auto" id="somGenocida"></audio>
 
-    <script type="text/javascript" src="./src/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="./src/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="./src/js/jquery-collision.min.js"></script>
+    <script type="text/javascript" src="./src/js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="./src/js/jquery.preload-1.2.0.min.js"></script>
+    <script type="text/javascript" src="./src/scripts/preloader.js"></script>
     <script type="text/javascript" src="./src/scripts/main.js"></script>
 </body>
 </html>

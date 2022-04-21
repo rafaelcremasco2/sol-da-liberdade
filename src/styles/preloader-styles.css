@@ -1,0 +1,32 @@
+.toLoad { display: none; }
+
+.loadingCentre {
+    width: 100vw;
+    height: 100vh;
+    /*  margin-left: auto;
+    margin-right: auto; */
+    background-color: #f0f8ff;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+}
+.loadingCentre > img {
+    width: 256px;
+    opacity: 80%;
+}
+
+#loadingBar {
+    width: 256px;
+    height: 15px;
+    border: 1px solid #AAA;
+    border-radius: 20px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#loadingText {
+    text-align: center;
+    color: #AAA;
+    font-size: 1em;
+}
