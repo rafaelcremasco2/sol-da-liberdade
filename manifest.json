@@ -1,0 +1,33 @@
+{
+  "name": "Sol da Liberdade - Jogo Web de navinha ",
+  "short_name": "Sol da Liberdade",
+  "description": "Jogo web de navinha desenvoldidos com intuito acadêmicos de estudo.",
+  "start_url": "/",
+  "lang": "pt-br",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "theme_color": "#000000",
+  "background_color": "#0000ff",
+  "icons": [
+    {
+      "src": "src/assets/images/icon_144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "src/assets/images/icon_180x180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "src/assets/images/icon.png",
+      "sizes": "192x162",
+      "type": "image/png"
+    },
+    {
+      "src": "src/assets/images/icon_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

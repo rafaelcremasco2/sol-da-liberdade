@@ -4,10 +4,7 @@
 	font-family: Titulo;
 	src: url(../assets/fontes/1up.ttf);
 }
-@font-face {
-	font-family: game_over;
-	src: url(../assets/fontes/game-over.otf);
-}
+
 @font-face {
 	font-family: placar;
 	src: url(../assets/fontes/VCR_OSD_MONO_1.001.ttf);
@@ -27,14 +24,6 @@ body {
 	height: 100vh;
 	margin: 0;
 	padding:0; 
-}
-
-#fim h1 {
-	font-family: game_over !important;
-	margin-top: 10px;
-}
-#fim b {
-	font-family: placar !important;
 }
 
 #container {
@@ -67,7 +56,7 @@ body {
 	width: 160px;
 	height: 121px;
 	position: absolute;
-	left: calc(100vw - 165px);
+	left: 100vw;
 	top: 60vh;
 	background-image:url(../assets/images/monster-0.png);
 	background-size: cover;
@@ -79,7 +68,7 @@ body {
 	width: 160px;
 	height: 121px;
 	position: absolute;
-	left: 81vw;
+	left: 100vw;
 	top: 65vh;
 	background-image: url(../assets/images/monster-stf.png);
 	background-size: cover;
@@ -333,6 +322,15 @@ h3 {
 	font-family: 'Roboto';
 }
 
+#fim h1 {
+	font-size: 2.4em;
+	margin-top: 10px;
+}
+
+#fim b {
+	font-family: placar;
+}
+
 footer {
 	background-color: #030018;
 	text-align: center;
@@ -353,7 +351,6 @@ footer a {
 #reinicia {
 	cursor: pointer;
 }
-
 
 @media (max-width: 660px)
 {
@@ -383,11 +380,10 @@ footer a {
 	}
 
 	#placar {
-		width: 250px;
-		height: 100px;
+		width: 200px;
 		position: absolute;
 		left: 10px;
-		top: 7px;
+		top: 0px;
 	}
 
 	#placar h2 {
@@ -396,11 +392,12 @@ footer a {
 	}
 
 	#energia {
-		width: 140px;
-		height: 38px;
+		width: 110px;
+		height: 30px;
 		position: absolute;
-		left: 65vw;
-		top: 7px;	
+		left: 68vw;
+		top: 7px;
+		background-size: cover;
 	}
 
 	#jogador, #inimigo1, #inimigo2 {
@@ -417,6 +414,7 @@ footer a {
 		width: 150px;
 		height: 113px;
 	}
+
 	#inicio {
 		width: 400px;
 		height: 400px;
@@ -431,6 +429,7 @@ footer a {
 		padding: 5px;
 		background-color: rgba(255, 255, 255, 0.705);
 	}
+
 	h1 {
 		padding-top: 2em;
 		color: rgb(0, 10, 15);
@@ -438,8 +437,19 @@ footer a {
 		position: relative;
 		font-size: 45px;
 	}
+
+	#fim {
+		width: 300px;
+		height: 220px;
+		margin-top: 18vh;
+		margin-bottom: 0;
+	}
+	#fim h1 {
+		margin: 0;
+		padding: 0;
+	}
 }
-@media (max-height: 660px) and (max-width: 1080px)
+@media (max-width: 1080px) and (orientation: landscape)
 {
 	#botao-atirar {
 		width: 60px;
@@ -456,22 +466,22 @@ footer a {
 
 	#botao-subir {
 		position: absolute;
-		left: 10vw;
+		left: 5vw;
 		top: 85vh;
 	}
 
 	#botao-descer {
 		position: absolute;
-		left: calc(10vw + 90px);
+		left: 15vw;
 		top: 85vh;
 	}
 
 	#placar {
-		width: 500px;
-		height: 100px;
+		width: 450px;
+    	height: 80px;
 		position: absolute;
-		left: 50px;
-		top: 7px;
+		left: 20px;
+		top: 5px;
 	}
 
 	#placar h2 {
@@ -480,11 +490,12 @@ footer a {
 	}
 
 	#energia {
-		width: 140px;
-		height: 38px;
+		width: 110px;
+		height: 30px;
 		position: absolute;
 		left: 80vw;
-		top: 7px;	
+		top: 7px;
+		background-size: cover;
 	}
 
 	#jogador, #inimigo1, #inimigo2 {
@@ -506,7 +517,7 @@ footer a {
 		height: 400px;
 		margin-left: auto;
 		margin-right: auto;
-		margin-top: -40px;
+		margin-top: -50px;
 		text-align: center;
 		padding: 0;
 	}
@@ -521,5 +532,32 @@ footer a {
 		text-shadow: rgb(255, 253, 253) 2px 0 10px;
 		position: relative;
 		font-size: 45px;
+	}
+	#fim {
+		width: 350px;
+		height: 220px;
+		margin-top: 18vh;
+		margin-bottom: 0;
+	}
+	#fim h1 {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+@media (max-width: 380px)
+{
+	#inicio {
+		width: 350px;
+		height: 350px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 40%;
+		text-align: center;
+		padding: 0;
+	}
+
+	#inicio h1 {
+		font-size: 2.4em;
 	}
 }

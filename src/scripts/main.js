@@ -19,7 +19,7 @@ function start() {
     var ALTURA_MINIMA_INIMIGO_1 = ALTURA_MINIMA_JOGADOR - 160;
     var jogo = {}
     var TECLA = { W: 38, S: 40, D: 68, ESPACO: 32 }
-    var velocidade = 5;
+    var velocidade = $('#container').css('width') > 768 ? 5 : 1;
     var posicaoY = parseInt(Math.random() * 334);
     var podeAtirar = true;
     var fimdejogo = false;
@@ -62,7 +62,7 @@ function start() {
         e.preventDefault();
     });
 
-    jogo.timer = setInterval(loop,30); // deixando o fundo do jogo em loop a cada 30ms
+    jogo.timer = setInterval(loop, 30); // deixando o fundo do jogo em loop a cada 30ms
     jogo.pressionou = [];
     musica.addEventListener("ended", function(){ musica.currentTime = 0; musica.play(); }, false);
     musica.play();
@@ -136,7 +136,7 @@ function start() {
     // função que movimenta o fundo do jogo
     function moveFundo() {
         esquerda = parseInt($("#fundoGame").css("background-position"));
-        $("#fundoGame").css("background-position",esquerda-1);
+        $("#fundoGame").css("background-position", esquerda - 1);
     }
     
     // Função que move jogador para cima
@@ -146,7 +146,7 @@ function start() {
 
         // limitando o nave no topo da página
         if (topo <= ALTURA_MAXIMA_JOGADOR) {
-            $("#jogador").css("top",topo + 10);
+            $("#jogador").css("top", topo + 10);
         }
     }
 
@@ -158,7 +158,7 @@ function start() {
 
         // limitando o nave no final da página
         if (topo >= ALTURA_MINIMA_JOGADOR) {	
-            $("#jogador").css("top",topo - 10);		
+            $("#jogador").css("top", topo - 10);		
         }
     }
 
@@ -191,7 +191,8 @@ function start() {
     // função para mover o inimigo 2
     function moveInimigo2() {
         posicaoX = parseInt($("#inimigo2").css("left"));
-	    $("#inimigo2").css("left", posicaoX - 3);
+        let velocidade = $('#container').css('width') > 768 ? 3 : 1;
+	    $("#inimigo2").css("left", posicaoX - velocidade);
 				
 		if (posicaoX <= 0) {
             $("#inimigo2").css("left", LARGURA_CONTANIER);		
@@ -350,7 +351,7 @@ function start() {
 
     // função que reposiciona inimigo2
 	function reposicionaInimigo2() {
-        var tempoColisao4 = window.setInterval(reposiciona4, 5000);
+        let tempoColisao4 = window.setInterval(reposiciona4, 5000);
 
         function reposiciona4() {
             window.clearInterval(tempoColisao4);
@@ -358,6 +359,7 @@ function start() {
 
             if (fimdejogo == false) {
                 $("#fundoGame").append("<div id=inimigo2 class='anima2'></div");
+                $("#inimigo2").css("left", LARGURA_CONTANIER);
             }
         }	
     }
@@ -414,11 +416,7 @@ function start() {
 
     // função que soma a pontuação do jogo
     function placar() {
-        if(pontos < 2000){
-            $("#placar").html("<h2> PONTOS: " + pontos + " AMIGOS SALVOS: " + salvos + " AMIGOS PERDIDOS: " + perdidos + "</h2>");
-        } 
-        else if(pontos > 2000 && pontos < 3000){
-            $("#placar").html('<h2> PONTOS: <b class="nivel-medio">' + pontos + '</b> AMIGOS SALVOS: ' + salvos + ' AMIGOS PERDIDOS: ' + perdidos + '</h2>');
+        if(pontos > 2000 && pontos < 3000){
             if(genocida == 0)
             {
                 somGenocida.play();
@@ -426,7 +424,6 @@ function start() {
             }
         }
         else if(pontos > 3000 && pontos < 4000){
-            $("#placar").html('<h2> PONTOS: <b class="nivel-alto">' + pontos + '</b> AMIGOS SALVOS: ' + salvos + ' AMIGOS PERDIDOS: ' + perdidos + '</h2>');
             if(genocida == 1)
             {
                 somGenocida.play();
@@ -434,7 +431,6 @@ function start() {
             }
         }
         else if(pontos > 4000 && pontos < 5000){
-            $("#placar").html('<h2> PONTOS: <b class="nivel-muito-alto">' + pontos + '</b> AMIGOS SALVOS: ' + salvos + ' AMIGOS PERDIDOS: ' + perdidos + '</h2>');
             if(genocida == 2)
             {
                 somGenocida.play();
@@ -442,12 +438,17 @@ function start() {
             }
         }
         else if(pontos > 5000){
-            $("#placar").html('<h2> PONTOS: <b class="nivel-insano">' + pontos + '</b> AMIGOS SALVOS: ' + salvos + ' AMIGOS PERDIDOS: ' + perdidos + '</h2>');
             if(acabou == 0)
             {
                 somAcabou.play();
                 acabou++;
             }
+        }
+
+        if($('#container').width() > 768) {
+            $("#placar").html("<h2> PONTOS: " + pontos + " AMIGOS SALVOS: " + salvos + " AMIGOS PERDIDOS: " + perdidos + "</h2>");
+        } else {
+            $("#placar").html("<h2> PONTOS: " + pontos + "<br> AMIGOS SALVOS: " + salvos + "<br> AMIGOS PERDIDOS: " + perdidos + "</h2>");
         }
     }
 
