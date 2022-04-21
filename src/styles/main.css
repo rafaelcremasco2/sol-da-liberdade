@@ -571,7 +571,7 @@ footer a {
 		/* Opera */
 		-o-transform: rotate(0deg);
 		/* Internet Explorer */
-		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
 	
 		/* final spec */
 		transform: rotate(0deg);
