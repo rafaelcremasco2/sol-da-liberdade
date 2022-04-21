@@ -1,5 +1,8 @@
 // função para iniciar o jogo
 function start() {
+    // deixa o jogo em tela cheia
+    document.documentElement.requestFullscreen();
+    
     $("#inicio").hide();
 	$("#fundoGame").append("<div id='jogador' class='anima1'></div>");
 	$("#fundoGame").append("<div id='inimigo1' class='anima2'></div>");
