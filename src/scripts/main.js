@@ -41,7 +41,21 @@ function start() {
     var somGenocida = document.getElementById("somGenocida");
     var genocida = 0;
     var acabou = 0;
-
+    /*
+        Inimigos do jogo
+        indice 0 = LULA
+        indice 1 = HARTUNG
+        indice 2 = DILMA
+        indice 3 = EDUARDO CUNHA
+        indice 4 = MICHEL TEMER
+        indice 5 = CASAGRANDE
+        indice 6 = CIRO
+        indice 7 = MARINA SILVA
+        indice 8 = MORO
+        indice 9 = ALEXANDRE DE MORAES
+    */		
+    var inimigosMortos = [0,0,0,0,0,0,0,0,0,0];
+    
     // Função que atualiza as váriáveis de posicionamento e tamanho do jogo
     function atualizaVariaveisDeControle(){
         LARGURA_CONTANIER = $('#container').width();
@@ -219,7 +233,7 @@ function start() {
             podeAtirar = false;
             topo = parseInt($("#jogador").css("top"))
             posicaoX = parseInt($("#jogador").css("left"))
-            if(parseInt(LARGURA_CONTANIER) < 660 || parseInt(ALTURA_CONTANIER) < 660){
+            if(parseInt(LARGURA_CONTANIER) < 1080 || parseInt(ALTURA_CONTANIER) < 1080){
                 tiroX = posicaoX + 70;
                 topoTiro = topo + 22;
             } else {
@@ -239,7 +253,7 @@ function start() {
             posicaoX = parseInt($("#disparo").css("left"));
             $("#disparo").css("left", posicaoX + 15);
             
-            if (posicaoX > 900) {
+            if (posicaoX > parseInt($('#container').width() * 0.7)) {
                 window.clearInterval(tempoDisparo);
                 tempoDisparo = null;
                 $("#disparo").remove();
@@ -284,13 +298,19 @@ function start() {
             velocidade = velocidade + 0.3;
             pontos = pontos + 100;
 	        inimigo1X = parseInt($("#inimigo1").css("left"));
-	        inimigo1Y = parseInt($("#inimigo1").css("top"));		
+	        inimigo1Y = parseInt($("#inimigo1").css("top"));
+            
+            //exibe explosão
             explosao1(inimigo1X,inimigo1Y);
-        
-	        $("#disparo").css("left", 950);
-	                  
+
+            //remove disparo da tela
+            $("#disparo").css("left", LARGURA_CONTANIER);             
+            
             // Gera novo inimigo 1
             novoInimigo1();
+
+            // Contabilizando mortes
+            contabilizarMortesInimigos("#inimigo1");
         }
 
         // colisão do disparo com o inimigo 2
@@ -298,10 +318,20 @@ function start() {
             pontos = pontos + 50;
             inimigo2X = parseInt($("#inimigo2").css("left"));
             inimigo2Y = parseInt($("#inimigo2").css("top"));
+
+            // Contabilizando mortes
+            contabilizarMortesInimigos("#inimigo2");
+
+            //remove inimigo morto
             $("#inimigo2").remove();
 
+            //exibe explosão
             explosao2(inimigo2X, inimigo2Y);
-            $("#disparo").css("left", 950);
+
+            //remove disparo da tela
+            $("#disparo").css("left", LARGURA_CONTANIER);
+            
+            //reposiciona inimigo 2
             reposicionaInimigo2();
         }
 
@@ -322,6 +352,14 @@ function start() {
             $("#amigo").remove();
             reposicionaAmigo();
         }
+    }
+
+    // Contabilizar mortes de inimigosMortos
+    function contabilizarMortesInimigos(idInimigo){
+        // Contabilizando mortes
+        let imagemInimigo = $(idInimigo).css("background-image");
+        let indiceInimigo = parseInt(imagemInimigo.substr(-7, 1));
+        inimigosMortos[indiceInimigo] += 1;
     }
 
     // Gera novo inimigo 1
@@ -496,6 +534,66 @@ function start() {
         }
     }
 
+    //Ranquear perdedores
+    function ranquearPerdedores(){
+        let lista = [];
+
+        if(inimigosMortos.length == 0) return [];
+
+        // Separar inimigos por nome e número de mortes
+        for(i = 0; i < inimigosMortos.length; i++){
+            switch (i) {
+                case 0:
+                    lista.push({name: 'Lula', value: inimigosMortos[i]});
+                    break;
+                case 1:
+                    lista.push({name: 'Hartung', value: inimigosMortos[i]});
+                    break;
+                case 2:
+                    lista.push({name: 'Dilma', value: inimigosMortos[i]});
+                    break;
+                case 3:
+                    lista.push({name: 'Cunha', value: inimigosMortos[i]});
+                    break;
+                case 4:
+                    lista.push({name: 'Temer', value: inimigosMortos[i]});
+                    break;
+                case 5:
+                    lista.push({name: 'Casagrande', value: inimigosMortos[i]});
+                    break;
+                case 6:
+                    lista.push({name: 'Ciro', value: inimigosMortos[i]});
+                    break;
+                case 7:
+                    lista.push({name: 'Marina', value: inimigosMortos[i]});
+                    break;
+                case 8:
+                    lista.push({name: 'Moro', value: inimigosMortos[i]});
+                    break;
+                case 9:
+                    lista.push({name: 'Moraes', value: inimigosMortos[i]});
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        // ordenar array
+        lista.sort(function (a, b) {
+            if (a.value < b.value) {
+              return 1;
+            }
+            if (a.value > b.value) {
+              return -1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+
+        return lista;
+    }
+
     // função que avalia o fim de jogo, game over
 	function gameOver() {
         fimdejogo = true;
@@ -503,6 +601,8 @@ function start() {
         somGameover.play();
         window.clearInterval(jogo.timer);
         jogo.timer = null;
+        //ranquear perdedores
+        let lista = ranquearPerdedores();
         
         $("#jogador").remove();
         $("#inimigo1").remove();
@@ -513,7 +613,11 @@ function start() {
         $("#botao-atirar").remove();
         $("#fundoGame").append("<div id='fim'></div>");
         $("#fim").html("<h1 classe='gameover'>GAME OVER</h1><p>Sua pontuação foi: <b>"
-             + pontos + "</b><br>Amigos Resgatados: <b>"+ salvos + "</b></p>" 
+             + pontos + "</b><br>Amigos Resgatados: <b>"+ salvos + "</b></p>"
+             + "<p><b>Ranking de Perdedores:</b></p>"
+             + `<p><b><small>1º ${lista[0].name}: ${lista[0].value} </small></b><br>`
+             + `<small>2º ${lista[1].name}: ${lista[1].value}</small><br>`
+             + `<small>3º ${lista[2].name}: ${lista[2].value}</small></p>`
              + "<div id='reinicia' onClick=reiniciaJogo()><h3>Jogar Novamente</h3>"
              + "<br><small>Desenvolvido por Rafael Cremasco Lacerda e caricaturas Amarildo</small></div>");
     }

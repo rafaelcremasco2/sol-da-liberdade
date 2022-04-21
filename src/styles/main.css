@@ -71,7 +71,7 @@ body {
 	position: absolute;
 	left: 100vw;
 	top: 65vh;
-	background-image: url(../assets/images/monster-stf.png);
+	background-image: url(../assets/images/monster-9.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 }
@@ -330,6 +330,10 @@ h3 {
 
 #fim b {
 	font-family: placar;
+}
+#fim > p {
+	margin-top: 4px;
+	margin-bottom: 6px;
 }
 
 footer {
