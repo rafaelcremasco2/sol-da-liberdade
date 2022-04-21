@@ -416,11 +416,23 @@ function start() {
 
     // função que soma a pontuação do jogo
     function placar() {
-        if(pontos > 2000 && pontos < 3000){
+        if(pontos < 2000){
+            if($('#container').width() > 768) {
+                $("#placar").html("<h2> PONTOS: " + pontos + " AMIGOS SALVOS: " + salvos + " AMIGOS PERDIDOS: " + perdidos + "</h2>");
+            } else {
+                $("#placar").html("<h2> PONTOS: " + pontos + "<br> AMIGOS SALVOS: " + salvos + "<br> AMIGOS PERDIDOS: " + perdidos + "</h2>");
+            }
+        }
+        else if(pontos > 2000 && pontos < 3000){
             if(genocida == 0)
             {
                 somGenocida.play();
                 genocida++;
+            }
+            if($('#container').width() > 768) {
+                $("#placar").html('<h2> PONTOS: <b class="nivel-medio">' + pontos + "</b> AMIGOS SALVOS: " + salvos + " AMIGOS PERDIDOS: " + perdidos + "</h2>");
+            } else {
+                $("#placar").html('<h2> PONTOS: <b class="nivel-medio">' + pontos + "</b><br> AMIGOS SALVOS: " + salvos + "<br> AMIGOS PERDIDOS: " + perdidos + "</h2>");
             }
         }
         else if(pontos > 3000 && pontos < 4000){
@@ -429,12 +441,22 @@ function start() {
                 somGenocida.play();
                 genocida++;
             }
+            if($('#container').width() > 768) {
+                $("#placar").html('<h2> PONTOS: <b class="nivel-alto">' + pontos + "</b> AMIGOS SALVOS: " + salvos + " AMIGOS PERDIDOS: " + perdidos + "</h2>");
+            } else {
+                $("#placar").html('<h2> PONTOS: <b class="nivel-alto">' + pontos + "</b><br> AMIGOS SALVOS: " + salvos + "<br> AMIGOS PERDIDOS: " + perdidos + "</h2>");
+            }
         }
         else if(pontos > 4000 && pontos < 5000){
             if(genocida == 2)
             {
                 somGenocida.play();
                 genocida++;
+            }
+            if($('#container').width() > 768) {
+                $("#placar").html('<h2> PONTOS: <b class="nivel-muito-alto">' + pontos + "</b> AMIGOS SALVOS: " + salvos + " AMIGOS PERDIDOS: " + perdidos + "</h2>");
+            } else {
+                $("#placar").html('<h2> PONTOS: <b class="nivel-muito-alto">' + pontos + "</b><br> AMIGOS SALVOS: " + salvos + "<br> AMIGOS PERDIDOS: " + perdidos + "</h2>");
             }
         }
         else if(pontos > 5000){
@@ -443,12 +465,11 @@ function start() {
                 somAcabou.play();
                 acabou++;
             }
-        }
-
-        if($('#container').width() > 768) {
-            $("#placar").html("<h2> PONTOS: " + pontos + " AMIGOS SALVOS: " + salvos + " AMIGOS PERDIDOS: " + perdidos + "</h2>");
-        } else {
-            $("#placar").html("<h2> PONTOS: " + pontos + "<br> AMIGOS SALVOS: " + salvos + "<br> AMIGOS PERDIDOS: " + perdidos + "</h2>");
+            if($('#container').width() > 768) {
+                $("#placar").html('<h2> PONTOS: <b class="nivel-insano">' + pontos + "</b> AMIGOS SALVOS: " + salvos + " AMIGOS PERDIDOS: " + perdidos + "</h2>");
+            } else {
+                $("#placar").html('<h2> PONTOS: <b class="nivel-insano">' + pontos + "</b><br> AMIGOS SALVOS: " + salvos + "<br> AMIGOS PERDIDOS: " + perdidos + "</h2>");
+            }
         }
     }
 
