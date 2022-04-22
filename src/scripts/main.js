@@ -19,10 +19,10 @@ function start() {
     var ALTURA_CONTANIER = $('#container').css('height');
     const ALTURA_MAXIMA_JOGADOR = 60;
     var ALTURA_MINIMA_JOGADOR = parseInt(parseInt(ALTURA_CONTANIER) * 0.65);
-    var ALTURA_MINIMA_INIMIGO_1 = ALTURA_MINIMA_JOGADOR - 160;
+    var ALTURA_MINIMA_INIMIGO_1 = parseInt($('#container').width()) > 768 ? ALTURA_MINIMA_JOGADOR - 180 : ALTURA_MINIMA_JOGADOR - 100;
     var jogo = {}
     var TECLA = { W: 38, S: 40, D: 68, ESPACO: 32 }
-    var velocidade = parseInt($('#container').width()) > 768 ? 5 : 1;
+    var velocidade = parseInt($('#container').width()) > 768 ? 5 : 2;
     var posicaoY = parseInt(Math.random() * 334);
     var podeAtirar = true;
     var fimdejogo = false;
@@ -61,7 +61,7 @@ function start() {
         LARGURA_CONTANIER = $('#container').width();
         ALTURA_CONTANIER = $('#container').height();
         ALTURA_MINIMA_JOGADOR = parseInt(parseInt(ALTURA_CONTANIER) * 0.65);
-        ALTURA_MINIMA_INIMIGO_1 = ALTURA_MINIMA_JOGADOR - 160;
+        ALTURA_MINIMA_INIMIGO_1 = parseInt($('#container').width()) > 768 ? ALTURA_MINIMA_JOGADOR - 180 : ALTURA_MINIMA_JOGADOR - 100;
     }
 
     // Controlando mudanças na orientação da tela
@@ -208,7 +208,7 @@ function start() {
     // função para mover o inimigo 2
     function moveInimigo2() {
         posicaoX = parseInt($("#inimigo2").css("left"));
-        let velocidade = parseInt($('#container').width()) > 768 ? 3 : 1;
+        let velocidade = parseInt($('#container').width()) > 768 ? 3 : 2;
 	    $("#inimigo2").css("left", posicaoX - velocidade);
 				
 		if (posicaoX <= 0) {
@@ -300,6 +300,9 @@ function start() {
 	        inimigo1X = parseInt($("#inimigo1").css("left"));
 	        inimigo1Y = parseInt($("#inimigo1").css("top"));
             
+            // Contabilizando mortes
+            contabilizarMortesInimigos("#inimigo1");
+
             //exibe explosão
             explosao1(inimigo1X,inimigo1Y);
 
@@ -308,9 +311,6 @@ function start() {
             
             // Gera novo inimigo 1
             novoInimigo1();
-
-            // Contabilizando mortes
-            contabilizarMortesInimigos("#inimigo1");
         }
 
         // colisão do disparo com o inimigo 2
@@ -364,7 +364,9 @@ function start() {
 
     // Gera novo inimigo 1
     function novoInimigo1() {
-        posicaoY = parseInt(Math.random() * ALTURA_MINIMA_INIMIGO_1) + ALTURA_MAXIMA_JOGADOR;
+        posicaoY = parseInt(Math.random() * ALTURA_MINIMA_INIMIGO_1);
+        if(posicaoY < ALTURA_MAXIMA_JOGADOR) posicaoY += ALTURA_MAXIMA_JOGADOR;
+
         $("#inimigo1").css("left", LARGURA_CONTANIER);
         $("#inimigo1").css("top", posicaoY);
         $("#inimigo1").css("background-image",'url(' + defineUrlImagemInimigo() + ')');
@@ -619,7 +621,7 @@ function start() {
              + `<small>2º ${lista[1].name}: ${lista[1].value}</small><br>`
              + `<small>3º ${lista[2].name}: ${lista[2].value}</small></p>`
              + "<div id='reinicia' onClick=reiniciaJogo()><h3>Jogar Novamente</h3>"
-             + "<br><small>Desenvolvido por Rafael Cremasco Lacerda e caricaturas Amarildo</small></div>");
+             + '<small class="creditos">ADS por Rafael Cremasco Lacerda e caricaturas Amarildo</small></div>');
     }
 
 }

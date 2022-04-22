@@ -27,6 +27,12 @@ body {
 	font-family: 'Roboto'; 
 }
 
+.creditos {
+	font-size: 10px;
+	margin-bottom: -30px;
+	margin-bottom: 0;
+}
+
 #container {
 	width: 100vw;
 	height: 100vh;
@@ -58,7 +64,7 @@ body {
 	height: 121px;
 	position: absolute;
 	left: 100vw;
-	top: 60vh;
+	top: 100px;
 	background-image:url(../assets/images/monster-0.png);
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -312,7 +318,7 @@ h3 {
 
 #fim {
 	width: 350px;
-	height: 270px;
+	height: 300px;
 	background-color: #FFF;
  	margin-left: auto;
     margin-right: auto;
@@ -393,7 +399,7 @@ footer a {
 
 	#placar h2 {
 		font-family: placar !important;
-		font-size: 0.9em;
+		font-size: 0.8em;
 	}
 
 	#energia {
@@ -445,12 +451,17 @@ footer a {
 
 	#fim {
 		width: 300px;
-		height: 220px;
+		height: 250px;
 		margin-top: 18vh;
 		margin-bottom: 0;
 	}
 	#fim h1 {
 		margin: 0;
+		padding: 0;
+	}
+	#fim h3 {
+		margin-top: 20px;
+		margin-bottom: 10px;
 		padding: 0;
 	}
 }
@@ -491,7 +502,7 @@ footer a {
 
 	#placar h2 {
 		font-family: placar !important;
-		font-size: 0.9em;
+		font-size: 0.8em;
 	}
 
 	#energia {
@@ -540,12 +551,17 @@ footer a {
 	}
 	#fim {
 		width: 350px;
-		height: 220px;
+		height: 250px;
 		margin-top: 18vh;
 		margin-bottom: 0;
 	}
 	#fim h1 {
 		margin: 0;
+		padding: 0;
+	}
+	#fim h3 {
+		margin-top: 20px;
+		margin-bottom: 10px;
 		padding: 0;
 	}
 }
