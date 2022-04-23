@@ -233,9 +233,10 @@ function start() {
             podeAtirar = false;
             topo = parseInt($("#jogador").css("top"))
             posicaoX = parseInt($("#jogador").css("left"))
-            if(parseInt(LARGURA_CONTANIER) < 1080 || parseInt(ALTURA_CONTANIER) < 1080){
+            console.log('Largura da nave: '+ parseInt($("#jogador").width()));
+            if(parseInt($("#jogador").width()) < 160){
                 tiroX = posicaoX + 70;
-                topoTiro = topo + 22;
+                topoTiro = topo + 12;
             } else {
                 tiroX = posicaoX + 140;
                 topoTiro = topo + 45;
